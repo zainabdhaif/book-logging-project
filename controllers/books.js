@@ -74,6 +74,11 @@ router.post('/', async (req, res, next) => {
     const edition = bookEd.editions.push(editionData);
     await bookEd.save();
 
+    //book is added to
+
+    currentUser.books.push(book._id);
+    await currentUser.save();
+    
     res.redirect(`/users/${currentUser._id}/books/index`);
 
   }catch (error){
