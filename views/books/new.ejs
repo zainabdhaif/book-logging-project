@@ -7,7 +7,66 @@
 </head>
 <body>
     <h1>this page allows you to add a new book</h1>
+    <form action="/users/<%= user._id %>/books" method="POST">
+        <!-- book name -->
+        <label for="title">Book title:
+            <input type="text" name="title" id="title" required maxLength="120"/>
+        </label>
+        <br>
+        <br>
+        <!-- author name -->      
+        <label for="author">Author name:
+            <input type="text" name="author" id="author" required maxLength="120"/>
+        </label>
+        <br>
+        <br>
+        <!-- average rating  -->    
+        <label for="averageRating">Rating (out of 5):
+            <input type="text" name="averageRating" id="averageRating" required maxLength="4"/>
+        </label>
+        <br>
+        <br>
+        <fieldset>
+            <legend>Book edition:</legend>
+            <!-- publishing house -->
+            <label for="publishingHouse">Publishing house:
+                <input type="text" name="publishingHouse" id="publishingHouse" required maxLength="130"/>
+            </label>
+            <br><br>
+
+             <!-- date published -->
+             <label for="datePublished">Date published:
+                <input type="date" name="datePublished" id="datePublished" required/>
+            </label>
+            <br><br>
+
+             <!-- no of pages -->
+             <label for="noOfPages">Book length (no. of pages):
+                <input type="text" name="noOfPages" id="noOfPages" required maxLength="5"/>
+            </label>
+
+            <br><br>
+             <!-- book cover -->
+             <label for="app.post('/upload', imageUpload.single('image'), (req, res) => {
+  const { title, description } = req.body;
+  const imageUrl = req.file.path; // The public URL of the uploaded image on Cloudinary
+
+  // You can now save the image information (title, description, imageUrl) to your database or do further processing
+  console.log('Uploaded image:', { title, description, imageUrl });
+
+  res.redirect('/'); // Redirect the user to a success page or the main page
+});">Image:
+                <input type="file" id="bookCover" name="bookCover">
+            </label>
     
+            <br><br>
+
+        </fieldset>
+  
+
+        <button type="submit">Add new book</button>
+
+    </form>
     
 </body>
 </html>

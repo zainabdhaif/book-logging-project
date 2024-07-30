@@ -55,7 +55,7 @@ const userSchema = new mongoose.Schema({
     lists: [listSchema],
     ratings:[ratingSchema],
     reviews: [reviewSchema],
-    //referencing the 
+    //referencing the book
     books:{
         type: [mongoose.Schema.Types.ObjectId],
         ref:'Book',

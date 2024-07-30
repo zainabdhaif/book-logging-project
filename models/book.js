@@ -12,7 +12,11 @@ const editionSchema = new mongoose.Schema ({
     noOfPages:{ 
     type: Number, 
     required: true 
-    }
+    },
+    bookCover: {
+        type: String,
+        required: false,
+    },
 });
 
 const bookSchema = new mongoose.Schema({
