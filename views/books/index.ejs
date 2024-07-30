@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Books</title>
+</head>
+<body>
+    <h1>this page shows all the books added to the website</h1>
+
+    <p>all books in website:</p>
+    <ul>
+        <% books.forEach((book)=>{ %>
+            <a href="/users/<%=user._id%>/books/<%=book._id%>">
+                <li><%= book.title %> by <%= book.author %></li>
+            </a>
+        <% }) %>
+        </ul>
+    
+</body>
+</html>

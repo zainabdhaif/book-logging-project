@@ -9,8 +9,14 @@ const morgan = require('morgan');
 const session = require('express-session');
 const path = require('path');
 
+
+//middleware things
+const isSignedIn = require('./middleware/is-signed-in.js');
+const passUserToView = require('./middleware/pass-user-to-view.js');
+
 //controllers
 const authCtrl = require('./controllers/auth.js');
+const bookCtrl = require('./controllers/books.js');
 
 //port thingy
 const port = process.env.PORT ? process.env.PORT : '5020';
@@ -30,7 +36,12 @@ app.use(
   })
 );
 
+app.use(passUserToView);
 
+
+
+// LINK TO PUBLIC DIRECTORY - to be able to style things 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => {
     res.render("index.ejs", {
@@ -39,6 +50,9 @@ app.get("/", (req, res) => {
   });
 
 app.use('/auth', authCtrl);
+app.use(isSignedIn);
+app.use('/users/:userId/books',bookCtrl);
+
 app.listen(port, () => {
     console.log(`The express app is ready on port ${port}!`);
   });

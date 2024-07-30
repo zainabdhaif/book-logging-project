@@ -5,6 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Home Page</title>
   </head>
   <body>
@@ -13,8 +14,8 @@
       <% if (user && user.role === "admin") { %>
     
     <p> hello  <%= user.username %>  <%= user.role %>!</p>
-    <h2> <a href="/books/index">Books:</a> </h2>
-    <h3> <a href="/books/new">Add a new book</a> </h3>
+    <h2> <a href="/users/<%= user._id %>/books/index">Books:</a> </h2>
+    <h3> <a href="/users/<%= user._id %>/books/new">Add a new book</a> </h3>
       <a href="/auth/sign-out">Sign Out</a>
 
       <!-- normal user part -->
