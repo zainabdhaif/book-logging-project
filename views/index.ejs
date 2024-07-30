@@ -1,0 +1,45 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <nav>
+      <!-- admin user part -->
+      <% if (user && user.role === "admin") { %>
+    
+    <p> hello  <%= user.username %>  <%= user.role %>!</p>
+    <h2> <a href="/books/index">Books:</a> </h2>
+    <h3> <a href="/books/new">Add a new book</a> </h3>
+      <a href="/auth/sign-out">Sign Out</a>
+
+      <!-- normal user part -->
+     <% }else if (user && user.role === "user"){%>
+
+        <p> hello  <%= user.username %>  <%= user.role %>!</p>
+        <h2> <a href="">browse all books</a> </h2>
+        <h3> <a href="">See all list</a> </h3>
+        <h3> <a href="">Create a new list</a> </h3>
+        <h3> <a href="">See all reviews</a> </h3>
+        <h3> <a href="">Add a review</a> </h3>
+        <a href="/auth/sign-out">Sign Out</a>
+
+          <!-- guest user part -->
+      <% } else { %>
+        <h1>Welcome to the app guest!</h1>
+      <a href="/auth/sign-in">Sign In</a>
+      <a href="/auth/sign-up">Sign Up</a>
+    
+      <% } %>
+    </nav>
+ 
+   
+
+    
+        
+      </body>
+      </html>
