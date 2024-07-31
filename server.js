@@ -21,7 +21,7 @@ const passUserToView = require('./middleware/pass-user-to-view.js');
 const authCtrl = require('./controllers/auth.js');
 const bookCtrl = require('./controllers/books.js');
 const userCtrl = require('./controllers/user.js');
-const singleBookCtrl = require('./controllers/individualBook.js');
+// const singleBookCtrl = require('./controllers/individualBook.js');
 
 
 //port thingy
@@ -59,7 +59,7 @@ app.use('/auth', authCtrl);
 app.use(isSignedIn);
 app.use('/users/:userId/books',bookCtrl);
 app.use('/users/:userId/nUser', userCtrl);
-app.use('/users/:userId/nUser/book', singleBookCtrl);
+// app.use('/users/:userId/nUser/book', singleBookCtrl);
 
 app.listen(port, () => {
     console.log(`The express app is ready on port ${port}!`);

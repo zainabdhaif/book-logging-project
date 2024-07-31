@@ -89,8 +89,25 @@ router.get('/:listId', async (req, res, next)=> {
   }
 })
 
+router.get('/addListBook/:listId', async (req, res, next)=> {
+  try{
+    // const currentUser = await User.findById(req.session.user._id);
+    // const lists = currentUser.lists;
+
+    // res.render('nUser/addListBook.ejs', {
+    //   lists: lists.id(req.params.listsId)
+    // });
+
+    res.render('nUser/addListBook.ejs')
+
+  }catch (error){
+    console.error(error);
+    res.redirect('/');
+  }
+})
+
 //show each individual book
-router.get('/:bookId', async (req, res, next) => {
+router.get('/book/:bookId', async (req, res, next) => {
   try {
     const book = await Book.findById(req.params.bookId);
  
@@ -101,5 +118,7 @@ router.get('/:bookId', async (req, res, next) => {
     res.redirect('/');
   }
 });
+
+
 
 module.exports = router; 
