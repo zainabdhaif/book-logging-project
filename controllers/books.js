@@ -32,6 +32,7 @@ router.post('/', async (req, res, next) => {
 
 
     req.body.date = new Date(req.body.date);
+
     const newBook = {
       title:req.body.title,
       author:req.body.author,
@@ -42,8 +43,6 @@ router.post('/', async (req, res, next) => {
 
     const bookId = book._id;
     const bookEd = await Book.findById(bookId);
-
-
 
     const editionData = {
       publishingHouse: req.body.publishingHouse,
@@ -68,12 +67,46 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-
+//show each individual book
 router.get('/:bookId', async (req, res, next) => {
   try {
     const book = await Book.findById(req.params.bookId);
+ 
     res.render('books/show.ejs', {book});
 
+  } catch (err) {
+    console.error(err);
+    res.redirect('/');
+  }
+});
+
+//edit each individual book
+router.get('/:bookId/edit', async (req, res, next) => {
+  try {
+    const book = await Book.findById(req.params.bookId);
+    const edition =book.editions.find( edition => {
+      return edition
+    }
+    );
+    res.render('books/edit.ejs', {book, edition});
+
+  } catch (err) {
+    console.error(err);
+    res.redirect('/');
+  }
+});
+
+router.put('/:bookId', async (req, res, next) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    req.body.date = new Date(req.body.date);
+    const book = await Book.findByIdAndUpdate(req.params.bookId, req.body);
+    
+
+    res.redirect(`/users/${currentUser._id}/books/${book._id}`);
+
+
+    
   } catch (err) {
     console.error(err);
     res.redirect('/');

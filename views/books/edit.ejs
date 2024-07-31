@@ -7,6 +7,68 @@
 </head>
 <body>
     <h1>this page allows you to edit an existing book</h1>
+
+    <form action="/users/<%= user._id %>/books/<%= book._id %>?_method=PUT" method="POST">
+        <!-- book name -->
+        <label for="title">Book title:
+            <input type="text" name="title" id="title" required maxLength="120" value="<%= book.title%>"/>
+        </label>
+        <br>
+        <br>
+        <!-- author name -->      
+        <label for="author">Author name:
+            <input type="text" name="author" id="author" required maxLength="120" value="<%= book.author%>"/>
+        </label>
+        <br>
+        <br>
+        <!-- average rating  -->    
+        <label for="averageRating">Rating (out of 5):
+            <input type="text" name="averageRating" id="averageRating" required maxLength="4" value="<%= book.averageRating%>"/>
+        </label>
+        <br>
+        <br>
+        <fieldset>
+            <legend>Book edition:</legend>
+            <!-- publishing house -->
+            <label for="publishingHouse">Publishing house:
+                <input type="text" name="publishingHouse" id="publishingHouse" required maxLength="130" value="<%=edition.publishingHouse%>" disabled/>
+            </label>
+            <br><br>
+
+             <!-- date published -->
+             <label for="datePublished">Date published:
+                <input type="date" name="datePublished" id="datePublished" required value="<%= edition.datePublished %>" disabled/>
+            </label>
+            <br><br>
+
+              <!-- language -->
+              <label for="language">Language:
+                <input type="text" name="language" id="language" required maxLength="90" value="<%= edition.language%>" disabled/>
+            </label>
+            <br><br>
+
+             <!-- no of pages -->
+             <label for="noOfPages">Book length (no. of pages):
+                <input type="text" name="noOfPages" id="noOfPages" required maxLength="5" value="<%= edition.noOfPages%>" disabled/>
+            </label>
+
+            <br><br>
+             <!-- book cover -->
+             <label for="bookCover">Book cover:
+                <input type="text" id="bookCover" name="bookCover" value="<%= edition.bookCover%>" disabled/>
+            </label>
+    
+            <br><br>
+
+        </fieldset>
+  
+
+        <button type="submit">edit book</button>
+        <form action="" method="POST">
+            <button type="submit">delete book</button>
+          </form>
+
+    </form>
     
 </body>
 </html>
