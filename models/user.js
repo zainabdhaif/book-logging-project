@@ -24,7 +24,7 @@ const ratingSchema = new mongoose.Schema({
 const listSchema = new mongoose.Schema({
     listType:{
         type: String,
-        enum: ['want to read', 'read', 'favorite', 'favorite'],
+        enum: ['want to read', 'read', 'DNF', 'favorite'],
         require: true,
     },
     description:{
