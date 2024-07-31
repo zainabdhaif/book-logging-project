@@ -22,7 +22,7 @@
      <% }else if (user && user.role === "user"){%>
 
         <p> hello  <%= user.username %>  <%= user.role %>!</p>
-        <h3> <a href="">browse all books</a> </h3>
+        <h3> <a href="/users/<%= user._id%>/nUser/index">browse all books</a> </h3>
         <h3> <a href="">See all list</a> </h3>
         <h3> <a href="">Create a new list</a> </h3>
         <h3> <a href="">See all reviews</a> </h3>
