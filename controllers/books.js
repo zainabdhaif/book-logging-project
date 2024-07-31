@@ -5,6 +5,7 @@ const router = express.Router();
 const User = require('../models/user.js');
 const Book = require('../models/book.js');
 
+
 //all books page
 router.get('/index', async (req, res) => {
     try {
@@ -20,6 +21,7 @@ router.get('/index', async (req, res) => {
     }
   });
 
+//add new book page
 router.get('/new', async (req, res) => {
     res.render('books/new.ejs');
 });
@@ -96,6 +98,7 @@ router.get('/:bookId/edit', async (req, res, next) => {
   }
 });
 
+//actually edit a book
 router.put('/:bookId', async (req, res, next) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
@@ -113,4 +116,22 @@ router.put('/:bookId', async (req, res, next) => {
   }
 });
 
+
+//delete a book
+router.delete('/:bookId', async (req, res, next) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+
+    currentUser.books.pull(req.params.bookId);
+    await currentUser.save();
+    // Delete the book from the database
+    await Book.findByIdAndDelete(req.params.bookId);
+
+    res.redirect('/books/index.ejs');
+  } catch (error) {
+    console.log(error);
+
+    res.redirect('/');
+  }
+});
 module.exports = router; 

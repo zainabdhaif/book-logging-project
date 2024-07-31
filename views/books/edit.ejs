@@ -64,11 +64,10 @@
   
 
         <button type="submit">edit book</button>
-        <form action="" method="POST">
-            <button type="submit">delete book</button>
-          </form>
 
-    </form>
+    </form>  <form action="/users/<%=user._id%>/books/<%=book._id%>?_method=DELETE" method="POST">
+        <button type="submit">delete book</button>
+      </form>
     
 </body>
 </html>
