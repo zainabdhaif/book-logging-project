@@ -6,15 +6,16 @@
     <title>All Books</title>
 </head>
 <body>
+    <h3> <a href="/users/<%= user._id %>/books/new">Add a new book</a> </h3>
+
     <h1>this page shows all the books added to the website</h1>
 
     <p>all books in website:</p>
     <ul>
-        <% books.forEach((book)=>{ %>
-            <a href="/users/<%=user._id%>/books/<%=book._id%>">
-                <li><%= book.title %> by <%= book.author %></li>
-            </a>
-        <% }) %>
+        <%books.forEach((book)=> {%>
+            <li><%= book.title %> by <%= book.author %></li>
+       <% })%>
+            
         </ul>
     
 </body>

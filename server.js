@@ -8,7 +8,10 @@ const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
 const path = require('path');
-
+const fs = require('fs');
+const imgur = require('imgur');
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
 
 //middleware things
 const isSignedIn = require('./middleware/is-signed-in.js');

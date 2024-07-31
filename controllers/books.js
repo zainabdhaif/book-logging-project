@@ -1,8 +1,6 @@
 const express = require('express');
 
 const router = express.Router();
-const uploadMiddleware = require("../middleware/uploadMiddleware.js");
-const upload = uploadMiddleware("bookCovers");
 
 const User = require('../models/user.js');
 const Book = require('../models/book.js');
@@ -11,9 +9,10 @@ const Book = require('../models/book.js');
 router.get('/index', async (req, res) => {
     try {
       const currentUser = await User.findById(req.session.user._id);
-      const books = currentUser.books;
-  
-      res.render('books/index.ejs', { books });
+      const books = await Book.find({});
+
+      // const books = currentUser.books.id(bookList);
+      res.render('books/index.ejs', {books});
 
     } catch (error) {
       console.log(error);
@@ -26,31 +25,10 @@ router.get('/new', async (req, res) => {
 });
 
 
-//create is for 
-//push is for embedded
-
-//to add a book to a certain user, we need to get id of user, then 
-// router.post('/books', async (req, res, next)=> {
-//   try{
-//     const currentUser = await User.findById(req.session.user._id);
-
-//     //to change date to an acceptable format to be accepted by DB
-//     req.body.date = new Date(req.body.date);
-//     // const imageUrl = req.file.path;
-//     currentUser.books.push(req.body);
-
-//     await currentUser.save();
-//     res.redirect(`/users/${currentUser._id}/books/index`);
-//   }
-//   catch(error){
-//     console.error(err);
-
-//     res.redirect('/');
-//   }
-// });
 router.post('/', async (req, res, next) => {
   try{
     const currentUser = await User.findById(req.session.user._id);
+
 
     req.body.date = new Date(req.body.date);
     const newBook = {
@@ -64,9 +42,12 @@ router.post('/', async (req, res, next) => {
     const bookId = book._id;
     const bookEd = await Book.findById(bookId);
 
+
+
     const editionData = {
       publishingHouse: req.body.publishingHouse,
       datePublished: req.body.datePublished,
+      language: req.body.language,
       noOfPages: req.body.noOfPages,
       bookCover: req.body.bookCover
     };
@@ -78,7 +59,7 @@ router.post('/', async (req, res, next) => {
 
     currentUser.books.push(book._id);
     await currentUser.save();
-    
+
     res.redirect(`/users/${currentUser._id}/books/index`);
 
   }catch (error){
@@ -86,6 +67,6 @@ router.post('/', async (req, res, next) => {
 
     res.redirect('/');
   }
-})
+});
 
 module.exports = router; 

@@ -9,13 +9,17 @@ const editionSchema = new mongoose.Schema ({
         type: Date,
         reuqired:true
     },
+    language:{
+        type: String,
+        required: true
+    },
     noOfPages:{ 
-    type: Number, 
-    required: true 
+        type: Number, 
+        required: true 
     },
     bookCover: {
         type: String,
-        required: false,
+        required: true
     },
 });
 

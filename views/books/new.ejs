@@ -6,6 +6,7 @@
     <title>Add New Book</title>
 </head>
 <body>
+    
     <h1>this page allows you to add a new book</h1>
     <form action="/users/<%= user._id %>/books" method="POST">
         <!-- book name -->
@@ -40,6 +41,12 @@
             </label>
             <br><br>
 
+              <!-- language -->
+              <label for="language">Language:
+                <input type="text" name="language" id="language" required maxLength="90"/>
+            </label>
+            <br><br>
+
              <!-- no of pages -->
              <label for="noOfPages">Book length (no. of pages):
                 <input type="text" name="noOfPages" id="noOfPages" required maxLength="5"/>
@@ -47,16 +54,8 @@
 
             <br><br>
              <!-- book cover -->
-             <label for="app.post('/upload', imageUpload.single('image'), (req, res) => {
-  const { title, description } = req.body;
-  const imageUrl = req.file.path; // The public URL of the uploaded image on Cloudinary
-
-  // You can now save the image information (title, description, imageUrl) to your database or do further processing
-  console.log('Uploaded image:', { title, description, imageUrl });
-
-  res.redirect('/'); // Redirect the user to a success page or the main page
-});">Image:
-                <input type="file" id="bookCover" name="bookCover">
+             <label for="bookCover">Book cover:
+                <input type="text" id="bookCover" name="bookCover">
             </label>
     
             <br><br>
