@@ -25,6 +25,7 @@ router.get('/new', async (req, res) => {
 });
 
 
+//book is created and added to db
 router.post('/', async (req, res, next) => {
   try{
     const currentUser = await User.findById(req.session.user._id);
@@ -55,8 +56,6 @@ router.post('/', async (req, res, next) => {
     const edition = bookEd.editions.push(editionData);
     await bookEd.save();
 
-    //book is added to
-
     currentUser.books.push(book._id);
     await currentUser.save();
 
@@ -65,6 +64,18 @@ router.post('/', async (req, res, next) => {
   }catch (error){
     console.error(error);
 
+    res.redirect('/');
+  }
+});
+
+
+router.get('/:bookId', async (req, res, next) => {
+  try {
+    const book = await Book.findById(req.params.bookId);
+    res.render('books/show.ejs', {book});
+
+  } catch (err) {
+    console.error(err);
     res.redirect('/');
   }
 });

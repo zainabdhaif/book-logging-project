@@ -7,7 +7,13 @@
 </head>
 <body>
   
-  <h1>this page shows individual book details</h1>>
+  <h1>this page shows individual book details</h1>
+
+  <p>The book name is <strong><%= book.title %></strong> by <%= book.author %>.</p>
+
+
+  <p>Is there any missing or incorrect data about the book above? modify book info   <a href="/books/<%= book._id %>/edit">here</a>.</p>
+
     
 </body>
 </html>

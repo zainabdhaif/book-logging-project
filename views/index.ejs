@@ -14,7 +14,7 @@
       <% if (user && user.role === "admin") { %>
     
     <p> hello  <%= user.username %>  <%= user.role %>!</p>
-    <h2> <a href="/users/<%= user._id %>/books/index">Books:</a> </h2>
+    <h3> <a href="/users/<%= user._id %>/books/index">See all the added books</a> </h3>
     <h3> <a href="/users/<%= user._id %>/books/new">Add a new book</a> </h3>
       <a href="/auth/sign-out">Sign Out</a>
 
@@ -22,7 +22,7 @@
      <% }else if (user && user.role === "user"){%>
 
         <p> hello  <%= user.username %>  <%= user.role %>!</p>
-        <h2> <a href="">browse all books</a> </h2>
+        <h3> <a href="">browse all books</a> </h3>
         <h3> <a href="">See all list</a> </h3>
         <h3> <a href="">Create a new list</a> </h3>
         <h3> <a href="">See all reviews</a> </h3>
