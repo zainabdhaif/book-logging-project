@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Lists</title>
+</head>
+<body>
+    
+    <h1>this page allows you to see all your lists</h1>
+    <ul>
+        <% lists.forEach((list)=>{ %>
+            <a href="">
+                <li><%= list.listType %>:  <%= list.description %></li>
+            </a>
+        <% }) %>
+        </ul>
+    
+</body>
+</html>

@@ -18,6 +18,33 @@ router.get('/index',async (req,res,next)=> {
     }
 })
 
+//add new list page
+router.get('/newList',async (req,res,next)=> {
+  try{
+
+    res.render('nUser/newList.ejs');
+
+
+  }catch (error){
+console.log(error);
+    res.redirect('/');
+  }
+})
+
+//see all lists page 
+router.get('/indexList',async (req,res,next)=> {
+  try{
+    const currentUser = await User.findById(req.session.user._id);
+    const lists = currentUser.lists;
+
+    res.render('nUser/indexList.ejs', { lists });
+
+
+  }catch (error){
+console.log(error);
+    res.redirect('/');
+  }
+})
 
 //show each individual book
 router.get('/:bookId', async (req, res, next) => {
@@ -31,4 +58,37 @@ router.get('/:bookId', async (req, res, next) => {
       res.redirect('/');
     }
   });
+
+
+
+
+
+
+//list is actually created and added to db
+router.post('/', async (req, res, next)=> {
+  try{
+
+    const currentUser = await User.findById(req.session.user._id);
+
+    const listData = {
+      listType: req.body.listType,
+      description: req.body.description
+    };
+
+    const list = currentUser.lists.push(listData);
+    await currentUser.save();
+
+    res.redirect(`/users/${currentUser._id}/nUser/indexList`);
+
+  }catch (error){
+    console.error(error);
+
+    res.redirect('/');
+  }
+});
+
+
+
+
+
 module.exports = router; 
