@@ -10,7 +10,7 @@
     <h1>this page allows you to see all your lists</h1>
     <ul>
         <% lists.forEach((list)=>{ %>
-            <a href="">
+            <a href="/users/<%=user._id%>/nUser/<%=list._id%>">
                 <li><%= list.listType %>:  <%= list.description %></li>
             </a>
         <% }) %>

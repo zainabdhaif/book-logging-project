@@ -46,22 +46,6 @@ console.log(error);
   }
 })
 
-//show each individual book
-router.get('/:bookId', async (req, res, next) => {
-    try {
-      const book = await Book.findById(req.params.bookId);
-   
-      res.render('nUser/showBooks.ejs', {book});
-  
-    } catch (err) {
-      console.error(err);
-      res.redirect('/');
-    }
-  });
-
-
-
-
 
 
 //list is actually created and added to db
@@ -88,7 +72,34 @@ router.post('/', async (req, res, next)=> {
 });
 
 
+//show each individual list
+router.get('/:listId', async (req, res, next)=> {
+  try{
 
+    const currentUser = await User.findById(req.session.user._id);
+    const lists = currentUser.lists;
 
+    res.render('nUser/listShow.ejs', {
+      lists: lists.id(req.params.listId)
+    });
+
+  }catch (error){
+    console.error(error);
+    res.redirect('/');
+  }
+})
+
+//show each individual book
+router.get('/:bookId', async (req, res, next) => {
+  try {
+    const book = await Book.findById(req.params.bookId);
+ 
+    res.render('nUser/showBooks.ejs', {book});
+
+  } catch (err) {
+    console.error(err);
+    res.redirect('/');
+  }
+});
 
 module.exports = router; 
