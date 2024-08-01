@@ -5,7 +5,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <title>Home Page</title>
   </head>
   <body>
@@ -14,19 +17,19 @@
       <% if (user && user.role === "admin") { %>
     
     <p> hello  <%= user.username %>  <%= user.role %>!</p>
-    <h3> <a href="/users/<%= user._id %>/books/index">See all the added books</a> </h3>
-    <h3> <a href="/users/<%= user._id %>/books/new">Add a new book</a> </h3>
+    <h4> <a href="/users/<%= user._id %>/books/index">See all the added books</a> </h4>
+    <h4> <a href="/users/<%= user._id %>/books/new">Add a new book</a> </h4>
       <a href="/auth/sign-out">Sign Out</a>
 
       <!-- normal user part -->
      <% }else if (user && user.role === "user"){%>
 
         <p> hello  <%= user.username %>  <%= user.role %>!</p>
-        <h3> <a href="/users/<%= user._id%>/nUser/index">browse all books</a> </h3>
-        <h3> <a href="/users/<%= user._id%>/nUser/indexList">See all list</a> </h3>
-        <h3> <a href="/users/<%= user._id%>/nUser/newList">Create a new list</a> </h3>
-        <h3> <a href="">See all reviews</a> </h3>
-        <h3> <a href="">Add a review</a> </h3>
+        <h4> <a href="/users/<%= user._id%>/nUser/index">browse all books</a> </h4>
+        <h4> <a href="/users/<%= user._id%>/nUser/indexList">See all list</a> </h4>
+        <h4> <a href="/users/<%= user._id%>/nUser/newList">Create a new list</a> </h4>
+        <!-- <h4> <a href="">See all reviews</a> </h3>
+        <h4> <a href="">Add a review</a> </h3> -->
         <a href="/auth/sign-out">Sign Out</a>
 
           <!-- guest user part -->
@@ -36,11 +39,7 @@
       <a href="/auth/sign-up">Sign Up</a>
     
       <% } %>
-    </nav>
- 
-   
-
-    
+      </nav>    
         
       </body>
       </html>

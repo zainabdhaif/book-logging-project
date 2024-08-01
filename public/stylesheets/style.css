@@ -1,3 +1,8 @@
-/* body{
-    background-color: wheat;
-} */
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background-color: #9ac2ef;
+  }

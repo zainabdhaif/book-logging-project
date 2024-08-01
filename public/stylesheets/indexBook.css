@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    text-align: center;
+    background: url('https://i.pinimg.com/originals/fa/c7/6a/fac76a264e8c30cba664d10eecb85f77.jpg');
+    background-size: cover;
+    color: #BDB896;
+  }
+  
+
+
+h1{
+    background-color: #fcfae6;
+    color: #e0d56c;
+}
+
+div{
+    min-height: 80vh;
+    min-width: 80vw;
+    background-color: #BDB896;
+}

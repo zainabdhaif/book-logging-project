@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<head>
+  <link href="/normalize.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    header {
+      text-align: center;
+      background: url('https://i.pinimg.com/originals/fa/c7/6a/fac76a264e8c30cba664d10eecb85f77.jpg');
+      background-size: cover;
+      color: #FCEF57;
+    }
+    a {
+      color: #FCEF57;
+    }
+    h1 {
+      font-family: "Lora", serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      font-size:60px;
+      color: #FCEF57;
+    }
+      
+
+    ul {
+      padding: 10px;
+      background: rgba(0,0,0,0.5);
+    }
+    li {
+      display: inline;
+      padding: 0px 10px 0px 10px;
+    }
+    article {
+      max-width: 500px;
+      padding: 20px;
+      margin: 0 auto;
+    }
+    
+      .book{
+      width:122px;
+      height:145px;
+      margin-top:40px;
+      
+      }
+  
+      
+    .profile{
+      width:140px;
+      height:140px;
+      border-radius:50%;
+       margin: 40px 0px 0px 0px;
+      border: 2px solid #BDB896;
+      }
+      
+  
+  .section{
+
+    width:600px;
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:40px;
+    }
+    
+  .left{
+    margin-right:20px;
+
+    }
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 36px;
+        padding: 5px;
+      }
+      li {
+        padding: 5px;
+        display: block;
+      }
+    }
+    
+  .div h2, p, h4{
+     font-family: "Lora", serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      font-size:18px;
+      color: #D75341;
+    }
+    
+    h2{
+       font-family: "Lora", serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      font-size:29px;
+      color: #B65F53;}
+  </style>
+</head>
+<body>
+  <header>
+    <img class="profile" src="https://images.ctfassets.net/o78em1y1w4i4/LHN0F94cNFCx1drEcfcsY/984e632abf38018f2a6ab22c4b61fdc6/teaser-book-with-heart-pages.jpg?fm=webp&w=1160&q=75">
+    <h1>Books with Zainab</h1>
+    <ul>
+      <li><a href="#">Latest Read</a></li>
+      <li><a href="#">2024 Books</a></li>
+      <li><a href="#">2023 Books</a></li>
+    </ul>
+  </header>
+  <article>
+  
+  <div class="section">
+  <div  class="left">
+  <img class="book" src="https://www.dymocks.com.au/Pages/ImageHandler.ashx?q=9780007527502&w=&h=570">
+  </div>
+  
+  <div  class="right"><h2>Murder on the Orient Express</h2>
+    <h4>by Agatha Christie</h4>
+    <p>A re-read of one my favorite books! I just love Agatha Christie's writing, and this books plotwist had me at the edge of my seat till the last page.</p>
+    <button>Read more..</button></div>
+  
+  
+  </div>
+  
+  
+    <div class="section">
+  <div  class="left">
+  <img class="book" src="https://images.thenile.io/r1000/9780141198835.jpg">
+  </div>
+  
+  <div  class="right"><h2>Persuasion</h2>
+    <h4>by Jane Austen</h4>
+    <p>Probably my favorite Jane Austen novel. It was the perfect blend of everything I love about her books.</p>
+    <button>Read more..</button></div>
+  
+  
+  </div>
+  
+  
+    <div class="section">
+  <div  class="left">
+  <img class="book" src="https://m.media-amazon.com/images/I/81zqVhvbHbL._AC_UF1000,1000_QL80_.jpg">
+  </div>
+  
+  <div  class="right"><h2>Norwegian Wood</h2>
+    <h4>by Haruki Murakami</h4>
+    <p>A suprisngly extremely enjoyabel readd although I am not the biggest fan of Murakami's writing style. However I sped through the book ..</p>
+    <button>Read more..</button></div>
+  
+  
+  </div>
+  
+  
+    
+  </article>
+
+  <script>
+    $("button").on("click", function() {
+      alert("Clicked!");
+    });
+  </script>
+</body>
