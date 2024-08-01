@@ -6,9 +6,23 @@
     <title>add book to list</title>
 </head>
 <body>
-    <!-- <h3><%= lists.listType%></h3> -->
-    <form>
-        
-    </form>
+    <h3> <%= lists.listType %></h3>
+<fieldset>
+    <legend>Add books to list [<%= lists.listType%>]</legend>
+    <form action="/users/<%= user._id%>/nUser/list/<%=lists._id%>" method="POST">
+        <label for="books">Choose a book:
+            <select id="books" name="books" required>
+                <option value="" select hidden>--select one--</option>
+                <%  books.forEach((book) => {%>
+                    <option value="<%=book._id%>"> <%= book.title%> </option>
+                    <%    })%>
+                </select>
+            </label>
+            <button type="submit">Add book to list</button>
+                
+         
+            </form>
+        </fieldset>
+ 
 </body>
 </html>

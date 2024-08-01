@@ -72,39 +72,81 @@ router.post('/', async (req, res, next)=> {
 });
 
 
-//show each individual list
-router.get('/:listId', async (req, res, next)=> {
-  try{
 
+
+// show each individual list
+router.get('/list/:listId', async (req, res, next) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id).populate('lists.books');
+    const list = currentUser.lists.id(req.params.listId);
+
+    // Extract the book details for the books in the list
+    const bookDetails = await Promise.all(list.books.map(async (bookId) => {
+      const book = await Book.findById(bookId);
+      return {
+        title: book.title,
+        author: book.author,
+        editions: book.editions
+      };
+    }));
+
+    res.render('nUser/listShow.ejs', {list,bookDetails});
+  } catch (error) {
+    console.error(error);
+    res.redirect('/');
+  }
+});
+
+//show add book to list page
+router.get('/listAdd/:listId', async (req, res, next)=> {
+  try {
     const currentUser = await User.findById(req.session.user._id);
     const lists = currentUser.lists;
+    const books = await Book.find({});
 
-    res.render('nUser/listShow.ejs', {
-      lists: lists.id(req.params.listId)
+    res.render('nUser/addListBook.ejs', {
+      lists: lists.id(req.params.listId),
+      books
     });
-
-  }catch (error){
+  } catch (error) {
     console.error(error);
     res.redirect('/');
   }
-})
+});
 
-router.get('/addListBook/:listId', async (req, res, next)=> {
+//actually add book to list
+router.post('/list/:listsId', async (req, res, next) => {
   try{
-    // const currentUser = await User.findById(req.session.user._id);
-    // const lists = currentUser.lists;
+    const currentUser = await User.findById(req.session.user._id);
+    const lists = currentUser.lists.id(req.params.listsId);
 
-    // res.render('nUser/addListBook.ejs', {
-    //   lists: lists.id(req.params.listsId)
-    // });
+    const book = lists.books.push(req.body.books);
 
-    res.render('nUser/addListBook.ejs')
+    await currentUser.save();
+    res.redirect(`/users/${currentUser._id}/nUser/indexList`);
 
-  }catch (error){
+  }catch(error){
     console.error(error);
     res.redirect('/');
   }
+
 })
+
+//show list with books
+// router.get('/indexList/:listsId', async (req, res, next)=> {
+
+//   const currentUser = await User.findById(req.session.user._id);
+//   const Lists = currentUser.lists.id(req.params.listsId);
+//   const books = await currentUser.Lists.books.find({});
+
+
+
+//   res.render('nUser/listShow',{
+//     lists: Lists.id(req.params.listsId),
+//     books })
+// })
+
+
 
 //show each individual book
 router.get('/book/:bookId', async (req, res, next) => {
@@ -118,7 +160,6 @@ router.get('/book/:bookId', async (req, res, next) => {
     res.redirect('/');
   }
 });
-
 
 
 module.exports = router; 

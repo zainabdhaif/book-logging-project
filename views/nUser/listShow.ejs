@@ -6,7 +6,22 @@
     <title>List Details</title>
 </head>
 <body>
-    <p>The list "<strong><%= lists.listType%></strong>" - <%= lists.description%>, has the following books:</p>
-    <p>Wish to add books to this list? <a href="/user/<%=user._id%>/nUser/">here</a></p>
+
+    <p>The list "<strong><%= list.listType%></strong>" - <%= list.description%>, has the following books:</p>
+    <ul>
+        <% bookDetails.forEach(book => { %>
+          <li>
+            <h4><%= book.title %></h4>
+            <p>Author: <%= book.author %></p>
+            <% book.editions.forEach(edition => { %>
+              <p>
+                Published: <%= edition.datePublished.toLocaleDateString() %> by <%= edition.publishingHouse %>
+                (<%= edition.language %>, <%= edition.noOfPages %> pages)
+              </p>
+            <% }) %>
+          </li>
+        <% }) %>
+      </ul>
+      
 </body>
 </html>

@@ -17,4 +17,20 @@ router.get('/:bookId', async (req, res, next) => {
     }
   });
 
+  router.get('/addListBook', async (req, res, next)=> {
+    try {
+      const currentUser = await User.findById(req.session.user._id);
+      const listType = req.query.listType;
+      const list = currentUser.lists.find(l => l.listType === listType);
+  
+      if (!list) {
+        return res.redirect('/');
+      }
+  
+      res.render('nUser/addListBook.ejs', { list });
+    } catch (error) {
+      console.error(error);
+      res.redirect('/');
+    }
+  });
   module.exports = router; 
