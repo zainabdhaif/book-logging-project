@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/indexBook.css" />
     
     <title>All Books</title>
 </head>
@@ -18,7 +17,7 @@
     <p>all books in website:</p>
     <ul>
         <%books.forEach((book)=> {%>
-            <img src="<%= book.bookCover%>" alt="book cover"> <a href="/users/<%=user._id%>/books/<%=book._id%>">  <li><%= book.title %> by <%= book.author %></li>  </a> 
+             <a href="/users/<%=user._id%>/books/<%=book._id%>">  <li><%= book.title %> by <%= book.author %></li>  </a> 
        <% })%>
             
         </ul>
